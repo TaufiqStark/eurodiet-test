@@ -26,4 +26,4 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::apiResource('/address', AddressController::class);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
-Route::get('/download-repo', [DownloadController::class, 'repository']);
+Route::get('/download/repo', [DownloadController::class, 'repository']);

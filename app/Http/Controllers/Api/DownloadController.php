@@ -13,11 +13,8 @@ class DownloadController extends Controller
         $owner = env('GITHUB_OWNER', 'TaufiqStark');
         $repo = env('GITHUB_REPO', 'portfolio-tailwind');
         $branch = env('GITHUB_BRANCH', 'main');
-        $access_token = env('GITHUB_ACCESS_TOKEN');
-        $response = Http::withHeaders([
-            'Authorization' => 'token '.$access_token,
-            'Accept' => 'application/vnd.github.v3.raw'
-        ])->get('https://api.github.com/repos/'.$owner.'/'.$repo.'/zipball/'.$branch);
+        $archive_format = env('GITHUB_ARCHIVE_FORMAT', 'zipball');
+        $response = Http::get('https://api.github.com/repos/'.$owner.'/'.$repo.'/'.$archive_format.'/'.$branch);
         $response->onError(function ($msg){
             return response()->json(['message' => $msg || 'failed'], 500);
         });
