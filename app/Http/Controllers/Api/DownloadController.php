@@ -22,6 +22,6 @@ class DownloadController extends Controller
         if($response->failed()){
             return response()->json(['message' => 'failed']);
         }
-        return response($response)->header('Content-Type', 'application/zip');
+        return response($response)->header('Content-Type', $response->header('Content-Type'));
     }
 }
